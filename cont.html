@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="all.css">
+     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+
+     <style>
+        #map {
+            height: 500px; /* กำหนดความสูงของแผนที่ */
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <a href="#" class="logo">My Portfolio</a>
+            <ul>
+                <li><a href="home.html">Home</a></li>
+                <li><a href="port.html">Portfolio</a></li>
+                <li><a href="cont.html">Contact</a></li>
+                <li><a href="work.html">Work</a></li>
+            </ul>
+        <div class="search-container">
+                <input type="text" class="search-input" placeholder="ค้นหา">
+        </div>
+     </nav>
+     <div class="hero">
+        <div class="content">
+            <h1>ติดต่อ</h1>
+            <div class="social-icon">
+        <p><a href="#"><i class="fab fa-phone"></i></a>: 0970250334</p>
+        <p><a href="#"><i class="fab fa-line"></i></a>: 0970250334</p>
+        <p><a href="#"><i class="fab fa-facebook-f"></i></a>: Siwakorn Kerdlap</p>
+        <p><a href="#"><i class="fab fa-google"></i></a>: Siwakorn1@gmail.com</p>
+        <p><a href="#"><i class="fab fa-instagram"></i></a>: siw4korn_kerdl4p</p>
+        </div>
+        </div>
+
+    <div class="map-circle">
+        <div id="map"></div>
+    </div>
+    
+     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+        var map = L.map('map').setView([15.019702, 104.337511], 13);
+
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+
+        var marker = L.marker([15.019702, 104.337511]).addTo(map);
+        marker.bindPopup("บริเวณหมู่บ้าน");
+
+        map.on('click', function(e) {
+            var lat = e.latlng.lat.toFixed(6);
+            var lng = e.latlng.lng.toFixed(6);
+
+            document.getElementById("lat").textContent = lat;
+            document.getElementById("lng").textContent = lng;
+
+            marker.setLatLng(e.latlng);
+        });
+    </script>
+    
+</body>
+</html>
